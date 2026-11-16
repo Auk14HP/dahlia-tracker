@@ -1,0 +1,3 @@
+# The GraphQL API runs inside the Next.js deployment on Vercel
+
+The GraphQL server lives in its own `api` package but is deployed as a Next.js route (`/api/graphql`) on Vercel's free tier, backed by Neon serverless Postgres, with photos in Cloudflare R2. Both the Next.js site and the React Native app call that one endpoint. We chose this over a long-running Node server because the free tiers for those either cost money now or sleep and take tens of seconds to wake, which is unusable when counting tubers with wet hands. A serverless function wakes in well under a second and keeps the whole project at $0/month. Keeping the API in its own package means moving it to a dedicated server later is a deployment change, not a rewrite.

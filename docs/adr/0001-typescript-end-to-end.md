@@ -1,0 +1,3 @@
+# TypeScript end to end, with a GraphQL API in Node
+
+The API, the React Native app, and the Next.js site are all TypeScript. They share one GraphQL schema whose generated types feed both clients. We chose this over keeping the .NET minimal API from the first Dahlia project. .NET is the Grower's strongest backend skill, but this project exists partly as a portfolio piece, and the job postings it targets ask for Node, GraphQL, React Native, and Next.js. One language across every layer also lets one schema and one codegen step type the whole stack. A Next.js-only backend (route handlers or server actions, no GraphQL) was also rejected, because it would skip the GraphQL practice.

@@ -1,0 +1,3 @@
+# One Grower per deployment; sharing means self-hosting
+
+Each deployment serves exactly one Grower: there are no tenants, no grower accounts, and no per-grower data isolation. Friends are the only other people with access. Other growers who want the app run their own copy from the public repo, with their own database. We chose this over a multi-tenant service because multi-tenancy would make this project the source of truth for everyone's data and would mean building sign-up, account management, and tenant isolation into every query. Those costs are very hard to retrofit or remove, and a personal project would gain nothing from them. Self-hosting gets other growers most of the benefit for the cost of a setup guide.
