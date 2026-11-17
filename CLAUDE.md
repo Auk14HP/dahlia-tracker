@@ -1,5 +1,9 @@
 # DahliaV2
 
+## Architecture
+
+`docs/architecture.md` shows how the pieces fit together (phone app, web app, API, database, outside services). A change that adds, removes, or moves a piece, or changes how two pieces talk, updates that diagram and its table in the same PR.
+
 ## Agent skills
 
 ### Issue tracker
