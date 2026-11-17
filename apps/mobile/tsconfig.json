@@ -1,0 +1,10 @@
+{
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"strict": true,
+		"noEmit": true,
+		// The API and database packages, which the screen tests run in-process, import their files by .ts name.
+		"allowImportingTsExtensions": true,
+		"types": ["jest", "node"]
+	}
+}
