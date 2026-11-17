@@ -1,0 +1,42 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        # The tests' Postgres. Its major version matches docker-compose.yml and the Neon database: change all three together.
+        services:
+            postgres:
+                image: postgres:17
+                env:
+                    POSTGRES_USER: dahlia
+                    POSTGRES_PASSWORD: dahlia
+                    POSTGRES_DB: dahlia
+                ports:
+                    - 5432:5432
+                options: >-
+                    --health-cmd "pg_isready -U dahlia"
+                    --health-interval 2s
+                    --health-timeout 5s
+                    --health-retries 15
+        env:
+            DATABASE_URL: postgresql://dahlia:dahlia@localhost:5432/dahlia
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24
+                  cache: npm
+            - run: npm ci
+            - run: npm run check
+            - run: npm run e2e
+            - uses: actions/upload-artifact@v7
+              if: failure()
+              with:
+                  name: playwright-traces
+                  path: test-results/
+                  if-no-files-found: ignore

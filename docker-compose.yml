@@ -1,0 +1,21 @@
+# Local Postgres for development and tests. The major version matches CI's service container
+# (.github/workflows/ci.yml) and the Neon database: change all three together.
+services:
+    postgres:
+        image: postgres:17
+        environment:
+            POSTGRES_USER: dahlia
+            POSTGRES_PASSWORD: dahlia
+            POSTGRES_DB: dahlia
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U dahlia']
+            interval: 2s
+            timeout: 5s
+            retries: 15
+
+volumes:
+    postgres-data:

@@ -1,0 +1,9 @@
+package-lock.json
+.next
+.expo
+next-env.d.ts
+test-results
+playwright-report
+# Written by `npm run codegen` and `prisma generate`; `codegen:check` compares the committed files byte for byte.
+**/generated
+**/generated.ts

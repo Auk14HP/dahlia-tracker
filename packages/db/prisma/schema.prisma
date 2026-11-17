@@ -1,0 +1,11 @@
+// The database schema. Change it with `npm run migrate -w @dahlia/db`, which writes a migration under
+// prisma/migrations and regenerates the client.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}

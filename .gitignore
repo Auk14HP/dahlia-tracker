@@ -4,3 +4,17 @@ node_modules/
 !.env.example
 .DS_Store
 .idea/
+
+# Next.js and Expo build output
+.next/
+next-env.d.ts
+.expo/
+dist/
+*.tsbuildinfo
+
+# The Prisma client, written by `prisma generate` on install
+packages/db/src/generated/
+
+# Playwright
+/test-results
+/playwright-report

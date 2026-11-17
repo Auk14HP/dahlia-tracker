@@ -1,0 +1,52 @@
+{
+	"name": "dahlia-tracker",
+	"version": "1.0.0",
+	"description": "One home grower's dahlia garden over the years.",
+	"private": true,
+	"type": "module",
+	"workspaces": [
+		"packages/db",
+		"packages/api",
+		"apps/web",
+		"apps/mobile"
+	],
+	"scripts": {
+		"dev": "npm run dev -w @dahlia/web",
+		"mobile": "npm run start -w @dahlia/mobile",
+		"mobile:tunnel": "node scripts/startPhoneOverTunnel.ts",
+		"db:up": "docker compose up --detach --wait",
+		"db:down": "docker compose down",
+		"codegen": "graphql-codegen",
+		"codegen:check": "graphql-codegen --check",
+		"typecheck": "tsc --noEmit -p tsconfig.json && npm run typecheck --workspaces",
+		"test": "npm test --workspaces --if-present",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"check": "npm run codegen:check && npm run typecheck && npm run lint && npm run format:check && npm test",
+		"prepare": "husky",
+		"e2e": "playwright test --pass-with-no-tests"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@graphql-codegen/cli": "^8.0.0",
+		"@graphql-codegen/typescript": "^7.0.1",
+		"@graphql-codegen/typescript-operations": "^7.0.1",
+		"@graphql-codegen/typescript-resolvers": "^7.0.1",
+		"@graphql-codegen/typescript-rtk-query": "^5.0.0",
+		"@playwright/test": "^1.65.1",
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@types/node": "^24.0.0",
+		"eslint": "^10.15.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"globals": "^17.13.0",
+		"husky": "^9.1.7",
+		"prettier": "^3.9.10",
+		"typescript": "~6.0.3",
+		"typescript-eslint": "^8.73.0"
+	},
+	"allowScripts": {
+		"fsevents": false
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "@dahlia/api",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./testing": "./src/testing.ts"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@dahlia/db": "*",
+		"graphql": "^17.1.0",
+		"graphql-yoga": "^6.1.0"
+	},
+	"devDependencies": {
+		"vitest": "^5.1.0"
+	}
+}
