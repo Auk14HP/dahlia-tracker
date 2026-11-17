@@ -38,9 +38,11 @@ The phone app talks to the API on the Mac that served it. To point it at another
 
 If Expo Go says "The request timed out", and Safari on the iPhone can't open `http://<the Mac's address>:3000` either, the phone can't reach the Mac over the home network. A content filter or VPN on the phone, or a router that keeps devices apart, does this. Serve both the app and the API through public tunnels instead:
 
-1. Install Cloudflare's tunnel tool once: `brew install cloudflared`
+1. Once, set up:
+    - Install Cloudflare's tunnel tool: `brew install cloudflared`
+    - Expo Go opens a project served from outside the home network only when the phone and the Mac are signed into the same Expo account (free, at expo.dev). Sign in on the Mac with `npx expo login`, or `npx expo login --sso` for an account made with Google, and in Expo Go's Profile tab. Expo Go's form needs a password, so an account made with Google needs one set, or use an email-and-password account.
 2. Start the web app and API as usual: `npm run dev`
-3. In another terminal, instead of `npm run mobile`: `npm run mobile:tunnel`. It opens a Cloudflare tunnel to the API, builds the app pointing at it, and serves the app through an ngrok tunnel. Neither needs an account.
+3. In another terminal, instead of `npm run mobile`: `npm run mobile:tunnel`. It opens a Cloudflare tunnel to the API, builds the app pointing at it, and serves the app through an ngrok tunnel. The tunnels themselves need no account.
 4. Scan the QR code it prints. Ctrl+C stops both tunnels.
 
 Each run gets new tunnel addresses, so the first load takes a little longer while the app rebuilds.
