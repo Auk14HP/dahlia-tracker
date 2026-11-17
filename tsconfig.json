@@ -9,5 +9,5 @@
 		"skipLibCheck": true,
 		"noEmit": true
 	},
-	"include": ["codegen.ts", "playwright.config.ts", "e2e"]
+	"include": ["codegen.ts", "playwright.config.ts", "e2e", "scripts"]
 }

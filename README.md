@@ -34,6 +34,17 @@ Everything finds the database through `DATABASE_URL` in `.env`, so any Postgres 
 
 The phone app talks to the API on the Mac that served it. To point it at another API, such as the deployed one, set `EXPO_PUBLIC_API_URL` in `apps/mobile/.env` (for example `EXPO_PUBLIC_API_URL=https://dahlia.example.com`).
 
+### When the phone can't reach the Mac
+
+If Expo Go says "The request timed out", and Safari on the iPhone can't open `http://<the Mac's address>:3000` either, the phone can't reach the Mac over the home network. A content filter or VPN on the phone, or a router that keeps devices apart, does this. Serve both the app and the API through public tunnels instead:
+
+1. Install Cloudflare's tunnel tool once: `brew install cloudflared`
+2. Start the web app and API as usual: `npm run dev`
+3. In another terminal, instead of `npm run mobile`: `npm run mobile:tunnel`. It opens a Cloudflare tunnel to the API, builds the app pointing at it, and serves the app through an ngrok tunnel. Neither needs an account.
+4. Scan the QR code it prints. Ctrl+C stops both tunnels.
+
+Each run gets new tunnel addresses, so the first load takes a little longer while the app rebuilds.
+
 ## Checks
 
 - `npm run check` runs everything the pre-commit hook does: GraphQL codegen freshness, type-check, lint, formatting, and both test seams. The tests need the database running (`npm run db:up`).

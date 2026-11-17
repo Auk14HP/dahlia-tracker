@@ -13,6 +13,7 @@
 	"scripts": {
 		"dev": "npm run dev -w @dahlia/web",
 		"mobile": "npm run start -w @dahlia/mobile",
+		"mobile:tunnel": "node scripts/startPhoneOverTunnel.ts",
 		"db:up": "docker compose up --detach --wait",
 		"db:down": "docker compose down",
 		"codegen": "graphql-codegen",

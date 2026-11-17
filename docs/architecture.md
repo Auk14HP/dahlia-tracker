@@ -41,7 +41,7 @@ flowchart LR
 ## Environments
 
 - **Production**: the Vercel deployment, the Grower's Neon database, and Resend. All three are free tiers.
-- **Local development**: the web app and API run on the developer's machine, against Postgres in Docker. The Expo app runs in Expo Go and loads from the developer's machine.
+- **Local development**: the web app and API run on the developer's machine, against Postgres in Docker. The Expo app runs in Expo Go and loads from the developer's machine. When the phone can't reach that machine over the home network, `npm run mobile:tunnel` serves the app through an ngrok tunnel and the API through a Cloudflare tunnel.
 - **Tests and CI**: the API runs inside the test process, against a throwaway Postgres (Docker locally, a service container in GitHub Actions). Sign-in emails go to an in-memory outbox instead of Resend.
 
 ## Self-hosting (ADR-0002)
